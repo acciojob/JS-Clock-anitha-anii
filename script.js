@@ -1,21 +1,21 @@
 //your code here
 function rotateClockHands() {
   const now = new Date();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
   const seconds = now.getSeconds();
+  const minutes = now.getMinutes();
+  const hours = now.getHours();
 
-  const hourHand = document.querySelector('.hour-hand');
-  const minuteHand = document.querySelector('.min-hand');
   const secondHand = document.querySelector('.second-hand');
+  const minuteHand = document.querySelector('.min-hand');
+  const hourHand = document.querySelector('.hour-hand');
 
-  const hourRotation = (hours * 30) + (minutes * 0.5);
-  const minuteRotation = (minutes * 6) + (seconds * 0.1);
-  const secondRotation = seconds * 6;
+  const secondRotation = (seconds / 60) * 360;
+  const minuteRotation = ((minutes + seconds / 60) / 60) * 360;
+  const hourRotation = ((hours + minutes / 60) / 12) * 360;
 
-  hourHand.style.transform = `rotate(${hourRotation}deg)`;
-  minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
   secondHand.style.transform = `rotate(${secondRotation}deg)`;
+  minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
+  hourHand.style.transform = `rotate(${hourRotation}deg)`;
 }
 
 setInterval(rotateClockHands, 1000);
